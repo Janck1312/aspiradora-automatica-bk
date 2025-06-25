@@ -7,6 +7,7 @@ import { TimeUseModule } from './time-use/time-use.module';
 import { CommonService } from './exchange/helpers/common.service';
 import { DistanceModule } from './distance/distance.module';
 import { UsesModule } from './uses/uses.module';
+import { MachineStateModule } from './machine-state/machine-state.module';
 
 @Module({
     imports: [
@@ -14,7 +15,8 @@ import { UsesModule } from './uses/uses.module';
         MongooseModule.forRoot(CommonService.getMongoURI()),
         TimeUseModule,
         DistanceModule,
-        UsesModule
+        UsesModule,
+        MachineStateModule
     ],
     controllers: [AppController],
     providers: [AppService],
