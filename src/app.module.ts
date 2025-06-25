@@ -6,13 +6,15 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { TimeUseModule } from './time-use/time-use.module';
 import { CommonService } from './exchange/helpers/common.service';
 import { DistanceModule } from './distance/distance.module';
+import { UsesModule } from './uses/uses.module';
 
 @Module({
     imports: [
         ConfigModule.forRoot({ isGlobal: true }),
         MongooseModule.forRoot(CommonService.getMongoURI()),
         TimeUseModule,
-        DistanceModule
+        DistanceModule,
+        UsesModule
     ],
     controllers: [AppController],
     providers: [AppService],
