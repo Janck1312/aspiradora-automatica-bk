@@ -5,12 +5,14 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { TimeUseModule } from './time-use/time-use.module';
 import { CommonService } from './exchange/helpers/common.service';
+import { DistanceModule } from './distance/distance.module';
 
 @Module({
     imports: [
         ConfigModule.forRoot({ isGlobal: true }),
         MongooseModule.forRoot(CommonService.getMongoURI()),
-        TimeUseModule
+        TimeUseModule,
+        DistanceModule
     ],
     controllers: [AppController],
     providers: [AppService],
