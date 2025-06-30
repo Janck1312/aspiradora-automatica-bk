@@ -6,6 +6,7 @@ import { CommonService } from 'src/exchange/helpers/common.service';
 import { PaginationDto } from 'src/exchange/dto/Pagination.dto';
 import { CreateMachineStateDto } from './dto/create-machine-state.dto';
 import { UpdateMachineStateDto } from './dto/update-machine-state.dto';
+import { ArduinoService } from 'src/exchange/services/arduino';
 
 @Injectable()
 export class MachineStateService {
@@ -24,9 +25,11 @@ export class MachineStateService {
 
     async update(updateMachineStateDto: UpdateMachineStateDto, id: Types.ObjectId) {
         try {
+            const arduinoService = ArduinoService.getInstance();
             const machineState = await this.machineStateModel.findById(id);
             if (!machineState) throw new Error("record not found");
             Object.assign(machineState, updateMachineStateDto);
+            await arduinoService.toggleVacumCleaner(machineState.power ? "ON" : "OFF");
             return await machineState.save();
         } catch (error) {
             CommonService.throwException(error.message, error.code);
