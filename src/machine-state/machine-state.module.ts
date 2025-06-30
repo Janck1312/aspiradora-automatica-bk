@@ -9,6 +9,7 @@ import { MachineState, MachineStateSchema } from './entities/machine-state.entit
   providers: [MachineStateService],
   imports: [
     MongooseModule.forFeature([{ name: MachineState.name, schema: MachineStateSchema }])
-  ]
+  ],
+  exports: [MachineStateService]
 })
 export class MachineStateModule { }

@@ -18,7 +18,7 @@ export class CommonService {
         throw new HttpException(message, code ?? 500);
     }
 
-    public static paginateModel<T>(
+    public static async paginateModel<T>(
         model: Model<T>,
         filters: PaginationDto,
         populateOptions: PopulateOptions[] = [],
@@ -27,7 +27,7 @@ export class CommonService {
         if (filters.search != "" && filters.search) {
             filters.$or = this.getSearch(filters.search, searchFields);
         }
-        return model.find(filters)
+        return await model.find({ $or: filters.$or || [] })
             .limit(filters.showRows || 20)
             .skip(filters.showRows * filters.page || 0)
             .populate(populateOptions);

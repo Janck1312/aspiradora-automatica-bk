@@ -18,5 +18,5 @@ export class PaginationDto {
     @Type(() => Number)
     showRows: number;
 
-    $or: any[];
+    $or?: any[];
 }

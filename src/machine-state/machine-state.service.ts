@@ -41,8 +41,6 @@ export class MachineStateService {
             return await CommonService.paginateModel(
                 this.machineStateModel,
                 paginationDto,
-                [],
-                []
             );
         } catch (error) {
             CommonService.throwException(error.message, error.code);
